@@ -1,0 +1,35 @@
+{
+  "posts": [
+    {
+      "id": "cc4c",
+      "title": "uzum",
+      "view": "",
+      "views": 78
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": null
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": null
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "id": "1",
+      "fname": "John",
+      "lname": "Doe",
+      "age": "12",
+      "gender": "male",
+      "views": 0
+    }
+  ]
+}
