@@ -5,7 +5,7 @@ import useFetch from "../hooks/useFetch";
 
 const initialState = {
   fname: "",
-  lname: "",
+  lastname: "",
   age: "",
   gender: "",
 };
@@ -17,7 +17,7 @@ const Users = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    formData.views = Number(formData.views);
+
 
     if (editingItem) {
       api.put(`users/${editingItem.id}`, formData);
@@ -54,8 +54,8 @@ const Users = () => {
             placeholder="First name"
           />
           <input
-            name="lname"
-            value={formData.lname}
+            name="lastname"
+            value={formData.lastname}
             onChange={handleChange}
             type="text"
             className="border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-400"
@@ -100,7 +100,7 @@ const Users = () => {
               className="bg-white border rounded-xl p-5 flex flex-col items-center text-center"
             >
               <div className="text-lg font-semibold text-gray-800">
-                {user.fname} {user.lname}
+                {user.fname} {user.lastname}
               </div>
               <div className="text-gray-500 mt-1">Age: {user.age}</div>
               <div className="text-gray-500">Gender: {user.gender}</div>
