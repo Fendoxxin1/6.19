@@ -11,24 +11,18 @@ const initialState = {
 };
 
 const Users = () => {
-  const { data = [], error, loading } = useFetch("users"); // agar error bo‘lsa ham [] bo‘lib ketadi
+  const { data = [], loading } = useFetch("users");
   const { handleChange, formData, setFormData } = useGetValues(initialState);
   const [editingItem, setEditingItem] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      if (editingItem) {
-        await api.put(`users/${editingItem.id}`, formData);
-        setEditingItem(null);
-      } else {
-        await api.post("users", formData);
-      }
-    } catch (err) {
-      console.error("API error:", err);
+    if (editingItem) {
+      await api.put(`users/${editingItem.id}`, formData);
+      setEditingItem(null);
+    } else {
+      await api.post("users", formData);
     }
-
     setFormData(initialState);
   };
 
@@ -38,16 +32,11 @@ const Users = () => {
   };
 
   const handleDelete = async (id) => {
-    try {
-      await api.delete(`/users/${id}`);
-    } catch (err) {
-      console.error("API error:", err);
-    }
+    await api.delete(`/users/${id}`);
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
-
       <div className="max-w-xl mx-auto bg-white border rounded-xl p-6 shadow-sm mb-10">
         <h2 className="text-2xl font-bold mb-6 text-gray-700 text-center">
           {editingItem ? "Edit User" : "Create User"}
@@ -96,13 +85,9 @@ const Users = () => {
         </form>
       </div>
 
-
       <div className="max-w-5xl mx-auto">
         <h2 className="text-xl font-bold mb-6 text-gray-700">All Users</h2>
-
         {loading && <p className="text-center">Loading...</p>}
-        {error && <p className="text-center text-red-500">API ishlamayapti (faqat UI)</p>}
-
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {data.map((user) => (
             <div
